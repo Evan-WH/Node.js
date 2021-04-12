@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<script src="jquery.js"></script>
+	<title></title>
+</head>
+
+<body>
+	<div id="user"></div>
+	姓名：<input id="name" type="text" />
+	内容：<textarea id="msg"></textarea>
+	<button onclick="send()">发送消息</button>
+
+	<script type="text/javascript">
+		var froName = "张三"
+		var htm = document.getElementById('user');
+		$(htm).html('欢迎你：' + froName)
+		var wss = new WebSocket('ws://127.0.0.1:3000')
+		//打开连接发送
+		wss.onopen = function () {
+			// console.log(name + ":" + msg)
+			wss.send(name + ":" + msg)
+		}
+		//接受服务端消息
+		wss.onmessage = function (data) {
+			console.log(data)
+		}
+		wss.onclose = function () {
+			console.log("关闭连接")
+		}
+
+		function send() {
+			var toName = document.getElementById('name').value;
+			var content = document.getElementById('msg').value;
+			console.log(froName + "," + toName + "," + content)
+			wss.send(froName + "," + toName + "," + content)
+			wss.close()
+		}
+	</script>
+</body>
+
+</html>
