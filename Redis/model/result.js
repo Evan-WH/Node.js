@@ -1,7 +1,6 @@
-exports.createResult=function(sucsess,data){
-    var result={};
-    result.sucsess=sucsess;
-    result.data=data;
+exports.createResult = function(success, data) {
+    var result = {};
+    result.success = success;
+    result.data = data;
     return result;
-}
-// 封装结果集
+};

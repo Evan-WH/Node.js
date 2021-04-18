@@ -12,7 +12,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 const conn = mysql.createConnection({
     host: '192.168.43.59',
     user: 'root',
-    password: '12345',
+    password: '111',
     database: 'studentmanager'
 
 });
